@@ -22,7 +22,7 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 
 # Import your Models here in order for them to be visible
-from user.models.user import User
+from tenant.models import Tenant  # noqa
 
 target_metadata = Base.metadata
 

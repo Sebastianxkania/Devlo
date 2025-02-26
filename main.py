@@ -4,7 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from core.database import Base, engine
 
-from user.routes.user_router import user_router
+from tenant.routes import tenant_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -22,7 +22,7 @@ if settings.BACKEND_CORS_ORIGINS:
         allow_headers=["*"],
     )
 
-app.include_router(user_router, prefix='/api')
+app.include_router(tenant_router, prefix='/api')
 
 
 @app.get("/")
