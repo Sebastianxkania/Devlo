@@ -22,7 +22,9 @@ if config.config_file_name is not None:
 # target_metadata = mymodel.Base.metadata
 
 # Import your Models here in order for them to be visible
-from tenant.models import Tenant  # noqa
+from app.delivery.order import models as OrderModels
+from app.delivery.address import models as AddressModels
+from app.delivery.customer import models as CustomerModels
 
 target_metadata = Base.metadata
 
@@ -51,7 +53,7 @@ def run_migrations_offline() -> None:
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
         compare_type=True,
-        include_schemas=True
+        include_schemas=True,
     )
 
     with context.begin_transaction():
@@ -76,9 +78,7 @@ def run_migrations_online() -> None:
     # )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata, compare_type=True, include_schemas=True
-        )
+        context.configure(connection=connection, target_metadata=target_metadata, compare_type=True, include_schemas=True)
 
         with context.begin_transaction():
             context.run_migrations()
