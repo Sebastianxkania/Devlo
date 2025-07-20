@@ -16,3 +16,6 @@ class CustomerResponse(BaseModel):
     user_id: UUID
     created_at: datetime.datetime
     orders: List[OrderSchemas.OrderResponse] = []
+
+    class Config:
+        orm_mode = True
