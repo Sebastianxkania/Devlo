@@ -14,14 +14,14 @@ customer_router = APIRouter(
 )
 
 
+@customer_router.get(
+    "/customers/{customer_id}",
+    response_model=CustomerSchemas.CustomerResponse,
+)
+def customer_get(customer_id: str, db: Session = Depends(get_db)):
+    return customer_services.get_customer(db, customer_id)
+
+
 @customer_router.post("/customers", response_model=CustomerSchemas.CustomerResponse)
-def address_post(customer: CustomerSchemas.CustomerCreate, db: Session = Depends(get_db)):
+def customer_post(customer: CustomerSchemas.CustomerCreate, db: Session = Depends(get_db)):
     return customer_services.create_customer(db, customer)
-
-
-@customer_router.get("/customers/{customer_id}", response_model=CustomerSchemas.CustomerResponse)
-def address_get(customer_id: str, db: Session = Depends(get_db)):
-    customer = customer_services.get_customer(db, customer_id)
-    if not customer:
-        raise HTTPException(status_code=404, detail="Customer not found")
-    return customer

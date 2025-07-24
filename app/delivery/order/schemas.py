@@ -12,6 +12,13 @@ class OrderCreate(BaseModel):
     # delivered_at: datetime | None = None
 
 
+class BriefOrderResponse(BaseModel):
+    id: UUID
+
+    class Config:
+        orm_mode = True
+
+
 class OrderResponse(BaseModel):
     id: UUID
     customer_id: UUID

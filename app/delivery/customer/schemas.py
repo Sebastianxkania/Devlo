@@ -5,6 +5,7 @@ import datetime
 from uuid import UUID
 
 from app.delivery.order import schemas as OrderSchemas
+from app.delivery.address import schemas as AddressSchemas
 
 
 class CustomerCreate(BaseModel):
@@ -15,7 +16,8 @@ class CustomerResponse(BaseModel):
     id: UUID
     user_id: UUID
     created_at: datetime.datetime
-    orders: List[OrderSchemas.OrderResponse] = []
+    orders: List[OrderSchemas.BriefOrderResponse] = []
+    addresses: List[AddressSchemas.AddressResponse] = []
 
     class Config:
         orm_mode = True

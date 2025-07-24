@@ -4,6 +4,10 @@ from uuid import UUID
 
 
 class AddressCreate(BaseModel):
+    customer_id: UUID
+    first_name: str
+    last_name: str
+    phone_number: str
     address_line_1: str
     address_line_2: str | None = None
     city: str
@@ -14,6 +18,9 @@ class AddressCreate(BaseModel):
 
 class AddressResponse(BaseModel):
     id: UUID
+    first_name: str
+    last_name: str
+    phone_number: str
     address_line_1: str
     address_line_2: str | None = None
     city: str
